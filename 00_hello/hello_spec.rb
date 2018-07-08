@@ -6,7 +6,8 @@
 #
 #     cd 00_hello
 #
-# This directory is the starting point for this exercise. It contains a spec file and you'll be adding a ruby file to (eventually) make the specs pass.
+# This directory is the starting point for this exercise. It contains a spec
+# file and you'll be adding a ruby file to (eventually) make the specs pass.
 #
 # ## Run the test
 #
@@ -14,7 +15,9 @@
 #
 # ## Watch it fail
 #
-# You should see an error. **Don't get scared!** Try to read it and figure out what the computer wants to tell you. Somewhere on the first line it should say something like
+# You should see an error. **Don't get scared!** Try to read it and figure out
+# what the computer wants to tell you. Somewhere on the first line it should say
+# something like
 #
 #     no such file to load -- test-first-teaching/hello/hello (LoadError)
 #
@@ -38,7 +41,8 @@
 #       1) the hello function says hello
 #          Failure/Error: hello.should == "Hello!"
 #          NameError:
-#            undefined local variable or method `hello' for #<RSpec::Core::ExampleGroup::Nested_1:0x000001009b8808>
+# undefined local variable or method `hello' for #<RSpec::Core::
+# ExampleGroup::Nested_1:0x000001009b8808>
 #          # ./hello/hello_spec.rb:5:in `block (2 levels) in <top (required)>'
 #
 # ## Create the hello function
@@ -65,11 +69,14 @@
 #                 got: nil (using ==)
 #          # ./hello/hello_spec.rb:5:in `block (2 levels) in <top (required)>'
 #
-# This means that while it found the file, and it found the function, it's not returning anything! ("nil" is the Ruby way of saying "not anything".)
+# This means that while it found the file, and it found the function, it's not
+# returning anything! ("nil" is the Ruby way of saying "not anything".)
 #
 # ## Make it return something
 #
-# Inside the "hello" function, put a single line containing a string that is *not* "Hello!". (Here we are simulating you making an honest mistake, so we can see what the error message looks like.)
+# Inside the "hello" function, put a single line containing a string that is
+# *not* "Hello!". (Here we are simulating you making an honest mistake, so we
+# can see what the error message looks like.)
 #
 #     def hello
 #       "whuh?"
@@ -107,30 +114,28 @@
 #     the greet function
 #       says hello to someone (FAILED - 1)
 #
-# In order to get the next test to pass, your function will need to accept an *argument*.
+# In order to get the next test to pass, your function will need to accept an
+# *argument*.
 #
 #     def greet(who)
 #       "Hello, #{who}!"
 #     end
 #
 
+require 'hello'
 
-require "hello"
-
-
-
-describe "the hello function" do
-  it "says hello" do
-    expect( hello).to eq("Hello!")
+describe 'the hello function' do
+  it 'says hello' do
+    expect(hello).to eq('Hello!')
   end
 end
 
-describe "the greet function" do
-  it "says hello to Alice:" do
-    expect(greet("Alice")).to eq("Hello, Alice!")
+describe 'the greet function' do
+  it 'says hello to Alice:' do
+    expect(greet('Alice')).to eq('Hello, Alice!')
   end
 
-  it "says hello to Bob" do
-    expect(greet("Bob")).to eq( "Hello, Bob!")
+  it 'says hello to Bob' do
+    expect(greet('Bob')).to eq('Hello, Bob!')
   end
 end
