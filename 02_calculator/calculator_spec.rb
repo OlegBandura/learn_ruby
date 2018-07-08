@@ -23,54 +23,57 @@
 #
 # # Bonus
 #
-# There are also some bonus exercises for when you finish the regular ones. The bonus round will help teach you test-driven *development*, not simply test-guided *learning*.
+# There are also some bonus exercises for when you finish the regular ones. The
+# bonus round will help teach you test-driven *development*, not simply
+# test-guided *learning*.
 #
-# Your mission, should you choose to accept it, is to write *tests* for three new methods:
+# Your mission, should you choose to accept it, is to write *tests* for three
+# new methods:
 #
 # * `multiply` which multiplies two numbers together
 # * `power` which raises one number to the power of another number
-# * `[factorial](http://en.wikipedia.org/wiki/Factorial)` (check Wikipedia if you forgot your high school math).
+# * `[factorial](http://en.wikipedia.org/wiki/Factorial)` (check Wikipedia if
+# you forgot your high school math).
 #
 #
 
-require "calculator"
+require 'calculator'
 
-describe "add" do
-  it "adds 0 and 0" do
-    expect(add(0,0)).to eq( 0 )
+describe 'add' do
+  it 'adds 0 and 0' do
+    expect(add(0, 0)).to eq(0)
   end
 
-  it "adds 2 and 2" do
-    expect(add(2,2)).to eq( 4 )
-
+  it 'adds 2 and 2' do
+    expect(add(2, 2)).to eq(4)
   end
 
-  it "adds positive numbers" do
-    expect(add(2,6)).to eq( 8 )
-  end
-end
-
-describe "subtract" do
-  it "subtracts numbers" do
-    expect( subtract(10,4)).to eq( 6 )
+  it 'adds positive numbers' do
+    expect(add(2, 6)).to eq(8)
   end
 end
 
-describe "sum" do
-  it "computes the sum of an empty array" do
-    expect(sum([])).to eq( 0 )
+describe 'subtract' do
+  it 'subtracts numbers' do
+    expect(subtract(10, 4)).to eq(6)
+  end
+end
+
+describe 'sum' do
+  it 'computes the sum of an empty array' do
+    expect(sum([])).to eq(0)
   end
 
-  it "computes the sum of an array of one number" do
-    expect(sum([7])).to eq( 7 )
+  it 'computes the sum of an array of one number' do
+    expect(sum([7])).to eq(7)
   end
 
-  it "computes the sum of an array of two numbers" do
-    expect(sum([7,11])).to eq( 18 )
+  it 'computes the sum of an array of two numbers' do
+    expect(sum([7, 11])).to eq(18)
   end
 
-  it "computes the sum of an array of many numbers" do
-    expect(sum([1,3,5,7,9])).to eq( 25 )
+  it 'computes the sum of an array of many numbers' do
+    expect(sum([1, 3, 5, 7, 9])).to eq(25)
   end
 end
 
@@ -78,23 +81,41 @@ end
 # once the above tests pass,
 # write tests and code for the following:
 
-describe "#multiply" do
+describe '#multiply' do
+  it 'multiplies two numbers' do
+    multiply(2, 3).should == 6
+  end
 
-  it "multiplies two numbers"
+  it 'multiplies several numbers' do
+    multiply(1, 2, 3, 4, 5).should == 120
+  end
 
-  it "multiplies several numbers"
-
-end
-
-describe "#power" do
-  it "raises one number to the power of another number"
+describe '#power' do
+  it 'raises one number to the power of another number' do
+    power(3, 3).should == 27
+  end
 end
 
 # http://en.wikipedia.org/wiki/Factorial
-describe "#factorial" do
-  it "computes the factorial of 0"
-  it "computes the factorial of 1"
-  it "computes the factorial of 2"
-  it "computes the factorial of 5"
-  it "computes the factorial of 10"
+describe '#factorial' do
+  it 'computes the factorial of 0' do
+    factorial(0).should == 1
+  end
+
+  it 'computes the factorial of 1' do
+    factorial(1).should == 1
+  end
+
+  it 'computes the factorial of 2' do
+    factorial(2).should == 2
+  end
+
+  it 'computes the factorial of 5' do
+    factorial(5).should == 120
+  end
+
+  it 'computes the factorial of 10' do
+    factorial(10).should == 362_880_0
+  end
+end
 end
