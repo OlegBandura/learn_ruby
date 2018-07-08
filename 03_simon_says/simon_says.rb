@@ -29,5 +29,5 @@ def titleize(word)
       action_word += ' ' + word.capitalize
     end
   end
-action_word
+  action_word
 end
