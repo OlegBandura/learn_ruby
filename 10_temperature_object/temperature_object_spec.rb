@@ -4,70 +4,74 @@
 # * constructors
 # * class methods
 # * factory methods
-#   
-# * [Options Hashes] ( http://stackoverflow.com/questions/1515577/factory-methods-in-ruby#1516824 )
-#   
+#
+# * [Options Hashes] ( http://stackoverflow.com/questions/1515577/factory-
+# methods-in-ruby#1516824 )
+#
 #
 # # Hints
 #
-# Remember that one degree fahrenheit is 5/9 of one degree celsius, and that the freezing point of water is 0 degrees celsius but 32 degrees fahrenheit.
+# Remember that one degree fahrenheit is 5/9 of one degree celsius, and that the
+ # freezing point of water is 0 degrees celsius but 32 degrees fahrenheit.
 # (and that you probably wrote those methods in assignment 1)
 #
-# Remember to define the `from_celsius` factory method as a *class* method, not an *instance* method.
+# Remember to define the `from_celsius` factory method as a *class* method, not
+ # an *instance* method.
 #
-# The temperature object's constructor should accept an *options hash* which contains either a `:celcius` entry or a `:fahrenheit` entry.
+# The temperature object's constructor should accept an *options hash* which
+ # contains either a `:celcius` entry or a `:fahrenheit` entry.
 #
 #
 #
 
-require "temperature"
+require 'temperature'
 
 describe Temperature do
-
-  describe "can be constructed with an options hash" do
-    describe "in degrees fahrenheit" do
-      it "at 50 degrees" do
-        expect(Temperature.new(:f => 50).in_fahrenheit).to be_within(0.01).of( 50.0)
+  describe 'can be constructed with an options hash' do
+    describe 'in degrees fahrenheit' do
+      it 'at 50 degrees' do
+        expect(Temperature.new(f: 50).in_fahrenheit).to be_within(0.01).of(50.0)
       end
 
-      describe "and correctly convert to celsius" do
-        it "at freezing" do
-          expect(Temperature.new(:f => 32).in_celsius).to be_within(0.01).of( 0.0)
+      describe 'and correctly convert to celsius' do
+        it 'at freezing' do
+          expect(Temperature.new(f: 32).in_celsius).to be_within(0.01).of(0.0)
         end
 
-        it "at boiling" do
-          expect(Temperature.new(:f => 212).in_celsius).to be_within(0.01).of( 100.0)
+        it 'at boiling' do
+          expect(Temperature.new(f: 212).in_celsius).to be_within(0.01).of(100.0)
         end
 
-        it "at body temperature" do
-          expect(Temperature.new(:f => 98.6).in_celsius).to be_within(0.01).of( 37.0)
+        it 'at body temperature' do
+          expect(Temperature.new(f: 98.6).in_celsius).to be_within(0.01).of(37.0)
         end
 
-        it "at an arbitrary temperature" do
-          expect(Temperature.new(:f => 68).in_celsius).to be_within(0.01).of( 20);
+        it 'at an arbitrary temperature' do
+          expect(Temperature.new(f: 68).in_celsius).to be_within(0.01).of(20)
         end
       end
     end
 
-    describe "in degrees celsius" do
-      it "at 50 degrees" do
-        expect(Temperature.new(:c => 50).in_celsius).to  be_within(0.01).of( 50);
+    describe 'in degrees celsius' do
+      it 'at 50 degrees' do
+        expect(Temperature.new(c: 50).in_celsius).to be_within(0.01).of(50)
       end
 
-      describe "and correctly convert to fahrenheit" do
-        it "at freezing" do
-          expect(Temperature.new(:c => 0).in_fahrenheit).to be_within(0.01).of( 32);
+      describe 'and correctly convert to fahrenheit' do
+        it 'at freezing' do
+          expect(Temperature.new(c: 0).in_fahrenheit).to be_within(0.01).of(32)
         end
 
-        it "at boiling" do
-          expect(Temperature.new(:c => 100).in_fahrenheit).to be_within(0.01).of( 212 );
+        it 'at boiling' do
+          expect(Temperature.new(c: 100).in_fahrenheit).to be_within(0.01).of(212)
         end
 
-        it "at body temperature" do
-          expect( Temperature.new(:c => 37).in_fahrenheit).to be_within(0.01).of(98.6)
+        it 'at body temperature' do
+          expect(Temperature.new(c: 37).in_fahrenheit).to be_within(0.01).of(98.6)
           # Why do we need to use be_within here?
           # See http://www.ruby-forum.com/topic/169330
-          # and http://groups.google.com/group/rspec/browse_thread/thread/f3ebbe3c313202bb
+          # and http://groups.google.com/group/rspec/browse_thread/thread/
+          # f3ebbe3c313202bb
           # Also, try "puts 0.5 - 0.4 - 0.1" -- pretty crazy, right?
         end
       end
@@ -78,18 +82,16 @@ describe Temperature do
   # One way to implement this pattern in Ruby is via class methods --
   # that is, methods defined on the class (Temperature) rather than
   # on individual instances of the class.
-  describe "can be constructed via factory methods" do
-
-    it "in degrees celsius" do
-      expect(Temperature.from_celsius(50).in_celsius).to be_within(0.01).of( 50)
-      expect(Temperature.from_celsius(50).in_fahrenheit).to be_within(0.01).of( 122);
+  describe 'can be constructed via factory methods' do
+    it 'in degrees celsius' do
+      expect(Temperature.from_celsius(50).in_celsius).to be_within(0.01).of(50)
+      expect(Temperature.from_celsius(50).in_fahrenheit).to be_within(0.01).of(122)
     end
 
-    it "in degrees fahrenheit" do
-      expect( Temperature.from_fahrenheit(50).in_fahrenheit).to be_within(0.01).of( 50);
-      expect( Temperature.from_fahrenheit(50).in_celsius).to be_within(0.01).of( 10);
+    it 'in degrees fahrenheit' do
+      expect(Temperature.from_fahrenheit(50).in_fahrenheit).to be_within(0.01).of(50)
+      expect(Temperature.from_fahrenheit(50).in_celsius).to be_within(0.01).of(10)
     end
-
   end
 
   # test-driving bonus:
@@ -99,33 +101,31 @@ describe Temperature do
   #
   # run *all* the tests during your refactoring, to make sure you did it right
   #
-  describe "utility class methods" do
-
+  describe 'utility class methods' do
   end
 
   # Here's another way to solve the problem!
-  describe "Temperature subclasses" do
-    describe "Celsius subclass" do
-      it "is constructed in degrees celsius" do
-        expect(Celsius.new(50).in_celsius).to be_within(0.01).of( 50)
-        expect(Celsius.new(50).in_fahrenheit).to be_within(0.01).of( 122);
+  describe 'Temperature subclasses' do
+    describe 'Celsius subclass' do
+      it 'is constructed in degrees celsius' do
+        expect(Celsius.new(50).in_celsius).to be_within(0.01).of(50)
+        expect(Celsius.new(50).in_fahrenheit).to be_within(0.01).of(122)
       end
 
-      it "is a Temperature subclass" do
+      it 'is a Temperature subclass' do
         expect(Celsius.new(0)).to be_a(Temperature)
       end
     end
 
-    describe "Fahrenheit subclass" do
-      it "is constructed in degrees fahrenheit" do
-        expect(Fahrenheit.new(50).in_fahrenheit).to be_within(0.01).of( 50)
-        expect(Fahrenheit.new(50).in_celsius).to be_within(0.01).of( 10)
+    describe 'Fahrenheit subclass' do
+      it 'is constructed in degrees fahrenheit' do
+        expect(Fahrenheit.new(50).in_fahrenheit).to be_within(0.01).of(50)
+        expect(Fahrenheit.new(50).in_celsius).to be_within(0.01).of(10)
       end
 
-      it "is a Temperature subclass" do
+      it 'is a Temperature subclass' do
         expect(Fahrenheit.new(0)).to be_a(Temperature)
       end
     end
   end
-
 end
